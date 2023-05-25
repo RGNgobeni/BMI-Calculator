@@ -9,6 +9,11 @@ const cardColour = Color(0xFF1D1E33);
 const inactiveCardColour = Color(0xFF111328);
 const bottomContainerColour = Color(0xFFEB1555);
 
+enum Gender {
+  male,
+  female,
+}
+
 void main() => runApp(BMICalculator());
 
 class BMICalculator extends StatelessWidget {
@@ -32,9 +37,9 @@ Color femaleCardColour = inactiveCardColour;
 
   Color get activeCardColour => null;
 
-void updateColour(int gender){
+void updateColour(Gender selectedGender){
   //male card
-  if (gender == 1){
+  if (selectedGender == Gender.male){
     if(maleCardColour == inactiveCardColour){
       maleCardColour = activeCardColour;
       femaleCardColour = inactiveCardColour;
@@ -44,7 +49,7 @@ void updateColour(int gender){
     }
   }
   //female card
-  if (gender == 2){
+  if (selectedGender == Gender.female){
        if(maleCardColour == inactiveCardColour){
       femaleCardColour = activeCardColour;
       maleCardColour = inactiveCardColour;
