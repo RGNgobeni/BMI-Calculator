@@ -32,6 +32,7 @@ class _InputPageState extends State<InputPage> {
 
   Gender selectedGender;
   int height = 180;
+  int weight = 60;
 
 
   @override
@@ -109,24 +110,69 @@ class _InputPageState extends State<InputPage> {
         )
         ],
           ),
-        Slider (
+        SliderTheme(
+            data.SliderTheme.of(context).copyWith(
+              inactiveTrackColor: Color(0XFF8D8E98),
+              activeTrackColor: Colors.white,
+            thumbColor: Color(0xFFEB15555),
+            overlayColor: Color(0x29EB15555),
+            thumbShape: 
+            RoundSliderThumbShape(enableThumbRaius: 15.0),
+            overlayShape: 
+            RoundSliderOverlayShape(overLayRadius: 30.0),
+            ),
+       child: Slider (
           value: height.toDouble(),
           min: 120.0,
           max: 220.0,
-          activeColor: Color(0xFFEB1555),
-          inactiveColor: Color(0XFF8D8E98),
+          
           onChanged: (double newValue){
-            print(newValue);
-          }
+            setState(() {
+                 height = newValue.round();
+            });
+         
+          },
         )
        ],
      ),
    ),
-),
+)
+);
 
-        Expanded(child: Row(
+
+        Expanded(
+          child: Row(
           children: <Widget>[
-            Expanded(child: ReusableCard(Color(0xFF1D1E33)
+            Expanded(child: ReusableCard(
+              Colour: kActiveCArdColour,
+              cardChild: Column(
+                children: <Widget>[
+                  Text(
+                    'WEIGHT',
+                    style: kLabelTextStyle,
+                  ),
+                Text(
+                  weight.toString(),
+                  style: kNumberTextStyle,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RoundIconButton(
+                      icon: FontAwesomeIcons.minus
+                      ),
+                    SizedBox(width: 10.0,),
+                
+                ]
+
+                  RoundIconButton(
+                    icon: FontAwesomeIcons.plus
+                    ),
+                ),
+              ),
+              ),
+
+              )
             ),
             ),
             Expanded(
@@ -134,7 +180,7 @@ class _InputPageState extends State<InputPage> {
             ),
        ),
           ],
-        )
+        ),
         ),
         Container(
           color: kbottomContainerColour,
@@ -146,10 +192,31 @@ class _InputPageState extends State<InputPage> {
         ],
       
       ),
-
-    );
+      );
   }
 }
 
+class RoundIconButton extends StatefulWidget {
 
+RoundIconButton({this.icon});
+final IconData icon;
+
+  @override
+  Widget build(BuildContext){
+   return RawMaterialButton(
+    child: Icon(icon),
+    onPressed: () {},
+    elevation: 6.0,
+    constraints: BoxConstraints.tightFor(
+      width: 56.0,
+      height: 56.0,
+    ),
+    shape: CircleBorder(
+      fillColor: Color(0xFF4C4F5E),
+
+    ),
+
+   ); 
+  }
+}
 
