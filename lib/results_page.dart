@@ -8,7 +8,7 @@ class ResultsPage extends StatelessWidget{
       title: Text('BMI CALCULATOR'),
      ), 
 
-     body: Text('Hello')
+     body: Text('Hello'),
     );
   }
 }
