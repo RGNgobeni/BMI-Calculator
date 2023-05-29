@@ -4,6 +4,13 @@ import '../components/reusable_card.dart';
 import 'package:bmi_calculator/components/bottom_button.dart';
 
 class ResultsPage extends StatelessWidget{
+
+ResultsPage({@required this.bmiResult, @required this.interpretation, @required this.resultText});
+
+final String bmiResult;
+final String resultText;
+final String interpretation;
+
   @override
   Widget build(BuildContext){
     return Scaffold(
@@ -34,15 +41,15 @@ class ResultsPage extends StatelessWidget{
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[Text(
-                'Normal',
+                resultText.toUpperCase(),
                 style: kResultText,
               ),
               Text(
-                '18.3',
+               bmiResult,
                 style: kBMIText,
               ),
               Text(
-                'Your BMI Result is quite low',
+                interpretation,
                 textAlign: TextAlign.center,
                 style: kBodyStyle,
               ),
